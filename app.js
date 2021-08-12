@@ -11,14 +11,12 @@ function uncheckAll() {
 document.addEventListener('keydown', (e) => {
     if (e.key == 'Shift') {
         multiple = true;
-        console.log(multiple);
     }
 });
 
 document.addEventListener('keyup', (e) => {
     if (e.key == 'Shift') {
         multiple = false;
-        console.log(multiple);
     }
 });
 
@@ -33,11 +31,13 @@ checkboxes.forEach((box) => box.addEventListener(('change'), (e) => {
 }));
 
 function isPreviousChecked(box) {
-    if (box.parentElement.previousSibling.previousSibling.firstElementChild == null) {
-        return;
-    }   else if (box.parentElement.previousSibling.previousSibling.firstElementChild.checked == false) {
+    try {
+        if (box.parentElement.previousSibling.previousSibling.firstElementChild.checked == false) {
         box.parentElement.previousSibling.previousSibling.firstElementChild.checked = true;
         isPreviousChecked(box.parentElement.previousSibling.previousSibling.firstElementChild);
+        }
+    } catch (TypeError) {
+        return;
     }
 }
 
