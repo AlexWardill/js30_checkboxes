@@ -1,0 +1,1 @@
+Hold Shift to check multiple checkboxes
